@@ -38,5 +38,31 @@ if __name__ == "__main__":
 				for sock in read_sockets:
 				    #new connection
 						if sock == server_sockets:
+							sockfd, addr = server_socket.accept()
+
+                            CONNECTION_LIST.append(sockfd)
+                            print ("Client (%s, %s) is online" % addr)
+                            print (ID)
+                            turn = IS +i
+                            # sockfd.send(turn.encode('utf-8'))
+                            # broadcast_data(sockfd, "The other player is turn " + turn)
+
+                        #some incomming message from client
+                        else:
+                                try:
+									    data = sock.recv(RECV_BUFFER).decode('utf-8')
+
+                                        if data:
+											    #broadcast_data(sock, data)
+
+								except:
+										broadcast_data(sock, "client (%s, %s) is offline" % addr)
+									    print ("Client (%s, %s) is offline" % addr)
+                                        sock.close()
+                                        CONNECTION_LIST.remove(sock)
+                                        continue
+
+server_socket.close()
+									
                 
             

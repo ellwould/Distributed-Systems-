@@ -64,7 +64,7 @@ def Main():
         
             # A conditional if statment to assign a Boolean value of True
             # or False to the variable "martial" dependant on the input
-            if martial in ["Y","y"]
+            if martial in ["Y","y"]:
                 martial = True
             else:
                 martial = False

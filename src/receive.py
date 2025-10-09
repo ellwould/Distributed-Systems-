@@ -18,7 +18,7 @@ import socket, json
 person = {}
 
 # Define the main function
-def Main():
+def main():
     # Initialise a variable named "thing" with Boolean value True
     thing = True
   
@@ -30,20 +30,27 @@ def Main():
     # This is the servers port
     port = 5000
     
+    # Join host and port variable
+    addressPort = (host, port)
+    
     # Create a socket with the socket function
-    s = socket.socket()
-  
-    # The connect function can take arguments, the variables "host" 
-    # and "port" have been passed to the connect function
-    s.connect((host, port))
-  
+    # s = socket.socket(socket.AF_INET, socket.SOCK_STREAM)
+    sock = socket.socket()
+
+    # The bind function can take arguments, the variables "host" 
+    # and "port" have been passed to the bind function
+    sock.bind(addressPort)
+    
+    sock.listen(2)
+    data = sock.accept()    
+    
     # Print to standard output (stdout) - the CLI
     print ("You are connected to the server.")
     
     # Create an infinite while loop
     while True:
         ### ADD COMMENT HERE LATER
-        data = s.recv(1024).decode('utf0')
+        data = sock.recv(1024).decode('utf0')
         
         ### ADD COMMENT HERE LATER
         if data:
@@ -60,4 +67,4 @@ def Main():
 
 # Run the Main function
 if __name__ == '__main__':
-    Main()
+    main()

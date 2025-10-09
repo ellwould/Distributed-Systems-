@@ -1,3 +1,15 @@
+#!/usr/bin/python3
+
+"""
+Added a shebang on line one so the Python3 interpreter can
+execute the Python file on a GNU/Linux OS
+
+To find the absolute path for the Python3 interpreter on a 
+GNU/Linux distrubution run the follwing BASH command:
+
+whereis python3
+"""
+
 import socket, select
 ID=1
 

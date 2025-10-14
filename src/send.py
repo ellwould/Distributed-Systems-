@@ -18,7 +18,7 @@ import socket, json
 person = {}
 
 # Define the main function
-def Main():
+def main():
     # Initialise a variable named "thing" with Boolean value True
     thing = True
   
@@ -29,20 +29,23 @@ def Main():
     # Initialise a variable named "port" with value 5000
     # This is the servers port
     port = 5000
+
+    # Join host and port variable
+    addressPort = (host, port)
     
     # Create a socket with the socket function
-    s = socket.socket()
+    sock = socket.socket()
   
     # The connect function can take arguments, the variables "host" 
     # and "port" have been passed to the connect function
-    s.connect((host, port))
+    sock.connect(addressPort)
   
     # Print to standard output (stdout) - the CLI
     print ("You are connected to the server.")
     
     # Create an infinite while loop
     while True:
-        while things:
+        while thing:
         
             # Initialise a variable named "fname" with the Python input 
             # function, the Python input function takes input from the
@@ -64,7 +67,7 @@ def Main():
         
             # A conditional if statment to assign a Boolean value of True
             # or False to the variable "martial" dependant on the input
-            if martial in ["Y","y"]
+            if martial in ["Y","y"]:
                 martial = True
             else:
                 martial = False
@@ -98,5 +101,5 @@ def Main():
 
 # Run the Main function    
 if __name__ == '__main__':
-    Main()
+    main()
                 

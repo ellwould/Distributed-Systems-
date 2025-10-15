@@ -28,17 +28,16 @@ def main():
     
     # Join host and port variable
     addressPort = (host, port)
-    
+
     # Create a socket with the socket function
-    # s = socket.socket(socket.AF_INET, socket.SOCK_STREAM)
-    sock = socket.socket()
+    sock = socket.socket(socket.AF_INET, socket.SOCK_STREAM)
 
     # The bind function can take arguments, the variables "host" 
     # and "port" have been passed to the bind function
     sock.bind(addressPort)
     
     sock.listen(2)
-    data = sock.accept()    
+    conn, data = sock.accept()    
     
     # Print to standard output (stdout) - the CLI
     print ("You are connected to the server.")
@@ -46,7 +45,7 @@ def main():
     # Create an infinite while loop
     while True:
         ### ADD COMMENT HERE LATER
-        data = sock.recv(1024).decode('utf0')
+        data = conn.recv(1024).decode("ascii")
         
         # Break out of the loop
         break

@@ -47,7 +47,6 @@ def main():
             test = input ("Please enter random string for test:  ")
             sock.send(test.encode("ascii"))
         break
-input("")
     
     
 

@@ -47,11 +47,11 @@ def main():
         ### ADD COMMENT HERE LATER
         data = conn.recv(1024).decode("ascii")
         
+        # Print to standard output (stdout) - the CLI
+        print("Test data received: ",data)
+        
         # Break out of the loop
-        break
-        # Print to standard output (stdout) - the CLI    
-        print ("Thanks for your participation")
-    input("")
+        # break
 
 
 

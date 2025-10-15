@@ -28,7 +28,7 @@ def main():
     addressPort = (host, port)
     
     # Create a socket with the socket function
-    sock = socket.socket()
+    sock = socket.socket(socket.AF_INET, socket.SOCK_STREAM)
   
     # The connect function can take arguments, the variables "host" 
     # and "port" have been passed to the connect function
@@ -44,7 +44,8 @@ def main():
             # Initialise a variable named "test" with the Python input 
             # function, the Python input function takes input from the
             # standard input (stdin) - the CLI
-            test = input ("Please enter random string for test:  ")   
+            test = input ("Please enter random string for test:  ")
+            sock.send(test.encode("ascii"))
         break
 input("")
     

@@ -45,7 +45,7 @@ def main():
             # function, the Python input function takes input from the
             # standard input (stdin) - the CLI
             test = input ("Please enter random string for test:  ")   
-   break
+        break
 input("")
     
     

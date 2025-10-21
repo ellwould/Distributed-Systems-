@@ -61,8 +61,8 @@ def main():
             # Break out of the loop
             #break
         # Print to standard output (stdout) - the CLI    
-        print ("Thanks for your participation")
-    input("")
+        #print ("Thanks for your participation")
+    break
 
 
 

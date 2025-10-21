@@ -34,7 +34,7 @@ def main():
     addressPort = (host, port)
     
     # Create a socket with the socket function
-    sock = socket.socket()
+    sock = socket.socket(socket.AF_INET, socket.SOCK_STREAM)
   
     # The connect function can take arguments, the variables "host" 
     # and "port" have been passed to the connect function
@@ -83,23 +83,23 @@ def main():
             
             # Initialise a variable named "go" with the Python input 
             # function     
-            go = input
+            data = json.dumps(person)
+            sock.sendall(bytes(data,encoding="utf-8"))
       
             # A conditional if statment to assign a Boolean value of False
             # to the variable "go" dependant on if the input is x or X
-            if go in ["x","X"]:
-                thing = False
+            #if go in ["x","X"]:
+                #thing = False
         
         # Print to standard output (stdout) - the CLI        
         print ("Sending your data")
         
         # Break out of the loop
         break
-    input("")
     
     
 
-# Run the Main function    
+# Run the main function    
 if __name__ == '__main__':
     main()
                 

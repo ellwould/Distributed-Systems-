@@ -63,14 +63,14 @@ def main():
         
             # Initialise a variable named "martial" with the Python input 
             # function
-            martial = input("Married? - y/n ")
+            marital = input("Married? - y/n ")
         
             # A conditional if statment to assign a Boolean value of True
             # or False to the variable "martial" dependant on the input
-            if martial in ["Y","y"]:
-                martial = True
+            if marital in ["Y","y"]:
+                marital = True
             else:
-                martial = False
+                marital = False
         
             # Add the variables "fname", "sname", age
             # and "marital" to the "person" dictonary

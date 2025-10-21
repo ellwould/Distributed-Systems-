@@ -59,7 +59,7 @@ def main():
             #print (person)
             
             # Break out of the loop
-            break
+            #break
         # Print to standard output (stdout) - the CLI    
         print ("Thanks for your participation")
     input("")

@@ -67,7 +67,7 @@ def main():
         
             # A conditional if statment to assign a Boolean value of True
             # or False to the variable "martial" dependant on the input
-            if marital in ["Y","y"]:
+            if marital in ["Y","y","Yes","yes"]:
                 marital = True
             else:
                 marital = False

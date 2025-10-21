@@ -35,14 +35,14 @@ def main():
     
     # Create a socket with the socket function
     # s = socket.socket(socket.AF_INET, socket.SOCK_STREAM)
-    sock = socket.socket()
+    sock = socket.socket(socket.AF_INET, socket.SOCK_STREAM)
 
     # The bind function can take arguments, the variables "host" 
     # and "port" have been passed to the bind function
     sock.bind(addressPort)
     
     sock.listen(2)
-    data = sock.accept()    
+    conn, data = sock.accept()  
     
     # Print to standard output (stdout) - the CLI
     print ("You are connected to the server.")
@@ -50,12 +50,13 @@ def main():
     # Create an infinite while loop
     while True:
         ### ADD COMMENT HERE LATER
-        data = sock.recv(1024).decode('utf0')
+        data = conn.recv(1024).decode("utf-8")
+        print (data)
         
         ### ADD COMMENT HERE LATER
-        if data:
+        #if data:
             ### ADD MISSING CODE LATER
-            print (person)
+            #print (person)
             
             # Break out of the loop
             break
@@ -65,6 +66,6 @@ def main():
 
 
 
-# Run the Main function
+# Run the main function
 if __name__ == '__main__':
     main()

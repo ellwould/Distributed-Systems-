@@ -35,7 +35,7 @@ if __name__ == "__main__":
 		
     server_socket = socket.socket(socket.AF_INET, socket.SOCK_STREAM)
     #this has no effect, why?
-    server_socket.setsockopt(socket.SOL_, socket.SO_REUSEADDR, 1)
+    server_socket.setsockopt(socket.SOL_IP, socket.SO_REUSEADDR, 1)
     server_socket.bind(("0.0.0.0", PORT))
     server_socket.setblocking(0)
     server_socket.listen(10)
@@ -47,7 +47,7 @@ if __name__ == "__main__":
 		
     while 1:
 	#get the list sockets which are ready to be read through select
-        read_sockets,write_sockets,error_sockets = select.selcet(CONNECTION_LIST,[],[])
+        read_sockets,write_sockets,error_sockets = select.select(CONNECTION_LIST,[],[])
         for sock in read_socket:
 	    #new connection
             if sock == server_sockets:
@@ -65,15 +65,15 @@ if __name__ == "__main__":
                 try:
                     data = sock.recv(RECV_BUFFER).decode('utf-8')
 
-                    if data:
+                    #if data:
 	        	#broadcast_data(sock, data)
 
-                        except:
-                            broadcast_data(sock, "client (%s, %s) is offline" % addr)
-                            print ("Client (%s, %s) is offline" % addr)
-                            sock.close()
-                            CONNECTION_LIST.remove(sock)
-                            continue
+                except:
+                    broadcast_data(sock, "client (%s, %s) is offline" % addr)
+                    print ("Client (%s, %s) is offline" % addr)
+                    sock.close()
+                    CONNECTION_LIST.remove(sock)
+                    continue
 
 server_socket.close()
 									

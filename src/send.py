@@ -28,7 +28,7 @@ def main():
   
     # Initialise a variable named "port" with value 5000
     # This is the servers port
-    port = 5000
+    port = 5001
 
     # Join host and port variable
     addressPort = (host, port)

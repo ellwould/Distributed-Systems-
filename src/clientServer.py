@@ -120,7 +120,7 @@ def run_client():
                 }
 
                 # Convert to JSON and send (newline-delimited)
-                data = json.dumps(person) + "\n"
+                data = json.dumps(team) + "\n"
                 sock.sendall(data.encode("utf-8"))
                 print("Sent JSON data to server.")
 
@@ -143,7 +143,7 @@ def run_client():
 # Main Entry
 if __name__ == "__main__":
     if len(sys.argv) != 2 or sys.argv[1] not in ["server", "client"]:
-        print("Arguments needed!  usage: python3 clientServer.py [server|client]")
+        print("Argument needed! - python3 clientServer.py [server|client]")
         sys.exit(1)
 
     mode = sys.argv[1]

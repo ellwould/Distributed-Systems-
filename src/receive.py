@@ -13,56 +13,50 @@ whereis python3
 # Importing the libaries required for this program
 import socket, json
 
-# Declare a Python dictionary data type named "person"
-# to store key value pairs
-person = {}
-
 # Define the main function
 def main():
-    # Initialise a variable named "thing" with Boolean value True
-    thing = True
-  
-    # Initialise a variable named "host" with value 127.0.0.1 (localhost)
-    # This is the servers IPv4 address
+    # Server host and port configuration
     host = '127.0.0.1'
-  
-    # Initialise a variable named "port" with value 5000
-    # This is the servers port
     port = 5000
-    
-    # Join host and port variable
-    addressPort = (host, port)
-    
-    # Create a socket with the socket function
-    # s = socket.socket(socket.AF_INET, socket.SOCK_STREAM)
-    sock = socket.socket(socket.AF_INET, socket.SOCK_STREAM)
 
-    # The bind function can take arguments, the variables "host" 
-    # and "port" have been passed to the bind function
-    sock.bind(addressPort)
-    
-    sock.listen(2)
-    conn, data = sock.accept()  
-    
-    # Print to standard output (stdout) - the CLI
-    print ("You are connected to the server.")
-    
-    # Create an infinite while loop
+    # Create a socket
+    server_socket = socket.socket(socket.AF_INET, socket.SOCK_STREAM)
+
+    # Bind the socket to the address and port
+    server_socket.bind((host, port))
+    print(f"Server started on {host}:{port}")
+
+    # Listen for incoming connections
+    server_socket.listen(2)
+    print("Waiting for a connection...")
+
+    # Accept a client connection
+    conn, addr = server_socket.accept()
+    print(f"Connection established with {addr}")
+
     while True:
-        ### ADD COMMENT HERE LATER
+        # Data from the client
         data = conn.recv(1024).decode("utf-8")
-        print (data)
-        
-        ### ADD COMMENT HERE LATER
-        #if data:
-            ### ADD MISSING CODE LATER
-            #print (person)
-            
-            # Break out of the loop
-            #break
-        # Print to standard output (stdout) - the CLI    
-        #print ("Thanks for your participation")
 
+        if not data:
+            # If no data is received, the client disconnected
+            print("Client disconnected.")
+            break
+
+        print(f"Raw data received:\n{data}")
+
+        # Parse the JSON data
+        try:
+            person = json.loads(data)
+            print("Decoded JSON data:")
+            print(json.dumps(person, indent=4))
+        except json.JSONDecodeError:
+            print("Received invalid JSON data.")
+
+    # Close the connection
+    conn.close()
+    server_socket.close()
+    print("Server closed.")
 
 
 # Run the main function

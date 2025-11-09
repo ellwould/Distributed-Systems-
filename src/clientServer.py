@@ -68,59 +68,75 @@ def run_client():
         print("Invalid port number. Using default 5000.")
         port = 5000
 
-    team = {}
+    club = {}
 
     try:
         with socket.create_connection((host, port)) as sock:
             print(f"\nConnected to server at {host}:{port}\n")
 
             while True:
-                tname = input("Please enter the teams name: ").strip()
-                cname = input("Please enter the city the teams from: ").strip()
+                club_name = input("Please enter the clubs/teams name: ").strip()
+                club_country = input("Please enter the country the club/team is located in: ").strip()
+                club_city = input("Please enter the city the club/team is located in: ").strip()
 
                 try:
-                    age = int(input("How old is the club? "))
+                    year = int(input("The current year is ? "))
                 except ValueError:
-                    print("Please enter a valid integer for how old the club is.\n")
+                    print("Please enter a valid integer for the current year.\n")
                     continue
 
                 try:
-                    won = int(input("How many games won this year? "))
+                    age = int(input("How many years old is the club? "))
                 except ValueError:
-                    print("Please enter a valid integer for games won.\n")
+                    print("Please enter a valid integer for how many years old the club is.\n")
                     continue
 
                 try:
-                    lost = int(input("How many games lost this year? "))
+                    total_matches = int(input("How many matches in total will the team play this year? "))
                 except ValueError:
-                    print("Please enter a valid integer for games lost.\n")
+                    print("Please enter a valid integer for the total ammount of matches the club will play.\n")
                     continue
 
                 try:
-                    draw = int(input("How many games drawn this year? "))
+                    won = int(input("How many matches won this year? "))
                 except ValueError:
-                    print("Please enter a valid integer for games drawn.\n")
+                    print("Please enter a valid integer for matches won.\n")
                     continue
 
-                league = input("Is the team in the Premier League? (y/n): ").strip().lower()
+                try:
+                    lost = int(input("How many matches lost this year? "))
+                except ValueError:
+                    print("Please enter a valid integer for matches lost.\n")
+                    continue
+
+                try:
+                    draw = int(input("How many matches drawn this year? "))
+                except ValueError:
+                    print("Please enter a valid integer for matches drawn.\n")
+                    continue
+
+                league = input("Is the club in the Premier League? (y/n): ").strip().lower()
                 league = league in ["Y", "y", "yes", "Yes"]
 
-                total_games = won + lost + draw
+                total_games_played = won + lost + draw
                 
                 # Build one record per transmission
-                team = {
-                    "Team name is ": tname,
-                    "City team are from is ": cname,
-                    "The football clubs age is ": age,
-                    "Games won this year are ": won,
-                    "Games lost this year are ": lost,
-                    "Games drawn this year are ": draw,
-                    "Total games played this year are ": total_games,
-                    "Premier League status is ": league
+                club = {
+                    "Club/Team name is" : club_name,
+                    "Country club/Team are from" : club_country,
+                    "City club/team are from" : club_city,
+                    "The current year is" : year,
+                    "The football clubs age in years is" : age,
+                    "Matches won this year are" : won,
+                    "Matches lost this year are" : lost,
+                    "Matches drawn this year are" : draw,
+                    "Matches played so far this year are" : total_games_played,
+                    "Matches remaining for this year are" : total_matches - total_games_played,
+                    "Premier League status is" : league
                 }
 
                 # Convert to JSON and send (newline-delimited)
-                data = json.dumps(team) + "\n"
+                data = json.dumps(club) + "\n"
                 sock.sendall(data.encode("utf-8"))
                 print("Sent JSON data to server.")
 

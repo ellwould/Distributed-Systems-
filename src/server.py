@@ -11,7 +11,7 @@ whereis python3
 """
 
 import socket, select
-ID=1
+ID=0
 
 #Function to broadcast chat messages to all connected clients
 def broadcast_data (sock, message):
@@ -31,7 +31,7 @@ if __name__ == "__main__":
     #List to keep track of socket description
     CONNECTION_LIST = []
     RECV_BUFFER = 4096 #Advisable to keep is as an exponant of 2
-    PORT = 5000
+    PORT = 5001
 		
     server_socket = socket.socket(socket.AF_INET, socket.SOCK_STREAM)
     #this has no effect, why?
@@ -66,7 +66,7 @@ if __name__ == "__main__":
                     data = sock.recv(RECV_BUFFER).decode('utf-8')
 
                     #if data:
-	        	#broadcast_data(sock, data)
+                    broadcast_data(sock, data)
 
                 except:
                     broadcast_data(sock, "client (%s, %s) is offline" % addr)
@@ -76,6 +76,3 @@ if __name__ == "__main__":
                     continue
 
 server_socket.close()
-									
-                
-            

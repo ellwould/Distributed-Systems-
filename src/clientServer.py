@@ -15,7 +15,7 @@ import socket, json, sys
 
 # Server
 def run_server():
-    host = input("Enter IP address to listen on (default 127.0.0.1): ").strip() or "127.0.0.1"
+    host = input("Enter IP address to listen on (default 0.0.0.0): ").strip() or "0.0.0.0"
     try:
         port = int(input("Enter port number to listen on (default 5001): ").strip() or 5001)
     except ValueError:
@@ -61,7 +61,7 @@ def run_server():
 
 # Client
 def run_client():
-    host = input("Enter proxy IP address (default 127.0.0.1): ").strip() or "127.0.0.1"
+    host = input("Enter proxy IP address (default 0.0.0.0): ").strip() or "0.0.0.0"
     try:
         port = int(input("Enter proxy port number (default 5000): ").strip() or 5000)
     except ValueError:
@@ -80,7 +80,7 @@ def run_client():
                 club_city = input("Please enter the city the club/team is located in: ").strip()
 
                 try:
-                    year = int(input("The current year is ? "))
+                    year = int(input("The current year is? "))
                 except ValueError:
                     print("Please enter a valid integer for the current year.\n")
                     continue

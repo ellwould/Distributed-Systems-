@@ -68,31 +68,55 @@ def run_client():
         print("Invalid port number. Using default 5000.")
         port = 5000
 
-    person = {}
+    team = {}
 
     try:
         with socket.create_connection((host, port)) as sock:
             print(f"\nConnected to server at {host}:{port}\n")
 
             while True:
-                fname = input("Please enter your first name: ").strip()
-                sname = input("Please enter your surname: ").strip()
+                tname = input("Please enter the teams name: ").strip()
+                cname = input("Please enter the city the teams from: ").strip()
 
                 try:
-                    age = int(input("How old are you? "))
+                    age = int(input("How old is the club? "))
                 except ValueError:
-                    print("Please enter a valid integer for age.\n")
+                    print("Please enter a valid integer for how old the club is.\n")
                     continue
 
-                marital = input("Married? (y/n): ").strip().lower()
-                marital = marital in ["y", "yes"]
+                try:
+                    won = int(input("How many games won this year? "))
+                except ValueError:
+                    print("Please enter a valid integer for games won.\n")
+                    continue
 
+                try:
+                    lost = int(input("How many games lost this year? "))
+                except ValueError:
+                    print("Please enter a valid integer for games lost.\n")
+                    continue
+
+                try:
+                    draw = int(input("How many games drawn this year? "))
+                except ValueError:
+                    print("Please enter a valid integer for games drawn.\n")
+                    continue
+
+                league = input("Is the team in the Premier League? (y/n): ").strip().lower()
+                league = league in ["Y", "y", "yes", "Yes"]
+
+                total_games = won + lost + draw
+                
                 # Build one record per transmission
-                person = {
-                    "First name": fname,
-                    "Last name": sname,
-                    "Age": age,
-                    "Marital Status": marital
+                team = {
+                    "Team name is ": tname,
+                    "City team are from is ": cname,
+                    "The football clubs age is ": age,
+                    "Games won this year are ": won,
+                    "Games lost this year are ": lost,
+                    "Games drawn this year are ": draw,
+                    "Total games played this year are ": total_games,
+                    "Premier League status is ": league
                 }
 
                 # Convert to JSON and send (newline-delimited)
@@ -106,7 +130,7 @@ def run_client():
 
                 # Ask user if they want to continue
                 cont = input("Send another entry? (y/n): ").strip().lower()
-                if cont not in ["y", "yes"]:
+                if cont not in ["Y", "y", "yes", "Yes"]:
                     print("Closing connection.")
                     break
 

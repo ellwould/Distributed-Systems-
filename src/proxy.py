@@ -72,7 +72,7 @@ if __name__ == "__main__":
                             print(f"Sent {len(data)} bytes from server to client")
 
             except (ConnectionResetError, ConnectionAbortedError):
-                print("[*] Connection closed.")
+                print("Connection closed.")
                 client_sock.close()
                 sent_sock.close()
 

@@ -47,16 +47,16 @@ if __name__ == "__main__":
 		
     while 1:
 	#get the list sockets which are ready to be read through select
-        read_sockets,write_sockets,error_sockets = select.select(CONNECTION_LIST,[],[])
+        read_socket,write_socket,error_socket = select.select(CONNECTION_LIST,[],[])
         for sock in read_socket:
 	    #new connection
-            if sock == server_sockets:
+            if sock == server_socket:
                 sockfd, addr = server_socket.accept()
 
                 CONNECTION_LIST.append(sockfd)
                 print ("Client (%s, %s) is online" % addr)
                 print (ID)
-                turn = IS +i
+                turn = ID +1
 	        # sockfd.send(turn.encode('utf-8'))
 	        # broadcast_data(sockfd, "The other player is turn " + turn)
 

@@ -20,7 +20,7 @@ if __name__ == "__main__":
     try:
         listen_port = int(input("Enter port to listen on (default 5000): ").strip() or 5000)
     except ValueError:
-        listen_port = 5001
+        listen_port = 5000
 
     # Configure sending
     send_host = input("Enter target IP address to forward data to (default 0.0.0.0): ").strip() or "0.0.0.0"
